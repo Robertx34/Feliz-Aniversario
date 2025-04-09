@@ -239,7 +239,7 @@
         <img src="fotos/foto6.jpg" /> 
         <img src="fotos/foto7.jpg" />
         <img src="fotos/foto8.jpg" />
-        <img src="fotos/foto9.jpg" />]
+        <img src="fotos/foto9.jpg" />
         <img src="fotos/foto10.jpg" />
       </div>
       <div class="dots" id="dots"></div>
