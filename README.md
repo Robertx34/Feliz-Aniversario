@@ -6,31 +6,32 @@
   <title>Nosso Amor</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #ff5c8d, #ff9eb6);
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      box-sizing: border-box;
     }
 
-    .screen {
-      position: absolute;
-      top: 0; left: 0;
+    body {
+      background: linear-gradient(to bottom right, #3575b1, #ff9eb6);
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
       width: 100%;
-      height: 100%;
-      display: none;
+      min-height: 100vh;
+      display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       padding: 20px;
-      box-sizing: border-box;
     }
 
-    #screen1 {
-      display: flex;
-      background: #007BFF;
+    #boas-vindas {
+      background: linear-gradient(to right, #6890bb, #ce6179);
+      color: white;
     }
 
     .glow-button {
@@ -50,15 +51,11 @@
 
     .glow-button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #00f7ff, 0 0 30px #459396;
+      box-shadow: 0 0 15px #22989c, 0 0 30px #398588;
     }
 
     .glow-button i {
-      color: #ff007f;
-    }
-
-    #screen2 {
-      background: linear-gradient(to bottom right, #3575b1, #ff9eb6);
+      color: #ebebeb;
     }
 
     .music-player {
@@ -104,8 +101,6 @@
 
     .carousel-track {
       display: flex;
-      width: 100%;
-      height: 100%;
       transition: transform 0.5s ease-in-out;
     }
 
@@ -163,6 +158,7 @@
     .contador {
       margin-top: 20px;
       text-align: center;
+      max-width: 600px;
     }
 
     .contador i {
@@ -170,7 +166,9 @@
     }
 
     .hearts {
-      position: absolute;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
@@ -200,20 +198,21 @@
         opacity: 0;
       }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- Primeira Tela -->
-  <div id="screen1" class="screen">
-    <button class="glow-button" onclick="showSecondScreen()">
-      <i class="fas fa-heart"></i> Click
+  <!-- Tela de Boas-vindas -->
+  <section id="boas-vindas">
+    <h1>Bem-vinda meu amor ❤️</h1>
+    <button class="glow-button" onclick="irParaPrincipal()">
+      <i class="fas fa-heart"></i> Entrar
     </button>
-  </div>
+  </section>
 
-  <!-- Segunda Tela -->
-  <div id="screen2" class="screen">
-    <!-- Bloco de Música -->
+  <!-- Tela Principal -->
+  <section id="principal" style="display:none;">
     <div class="music-player">
       <img src="capa.jpg" alt="Capa da música" />
       <div class="info">
@@ -227,39 +226,55 @@
       </div>
     </div>
 
-    <!-- Carrossel -->
     <div class="carousel">
       <button class="carousel-button left" onclick="mudarFoto(-1)">❮</button>
       <button class="carousel-button right" onclick="mudarFoto(1)">❯</button>
-
       <div class="carousel-track" id="carouselTrack">
         <img src="fotos/foto1.jpg" />
         <img src="fotos/foto2.jpg" />
         <img src="fotos/foto3.jpg" />
         <img src="fotos/foto4.jpg" />
         <img src="fotos/foto5.jpg" />
-        <img src="fotos/foto6.jpg" />
-        <img src="fotos/foto7.jpg" />
-        <img src="fotos/foto8.jpg" />
-        <img src="fotos/foto9.jpg" />
-        <img src="fotos/foto10.jpg" />
       </div>
-
       <div class="dots" id="dots"></div>
     </div>
 
     <div class="contador">
       <p><i class="fas fa-heart"></i> Eu te amo há:</p>
       <p id="tempo"></p>
+
+  
+      <!-- MENSAGEM ROMÂNTICA -->
+      <div class="mensagem" style="margin-top: 20px; font-size: 18px; max-width: 400px; text-align: center; line-height: 1.6;">
+        <p>
+          Parabéns, meu amor! 💖<br><br>
+          Hoje é mais um daqueles dias em que meu coração se enche de gratidão por ter você ao meu lado. Sua presença ilumina minha vida, e cada momento contigo se torna inesquecível. Obrigado por ser minha inspiração, minha paz e meu abrigo. <br><br>
+          Sua companhia é o que dá sentido a cada um dos meus dias. Você é minha melhor escolha, meu maior orgulho e o amor que sempre sonhei. Que essa data se repita por muitos e muitos anos, sempre com sorrisos, cumplicidade e muito amor. <br><br>
+          Te amo mais do que palavras podem expressar. 💘<br><br>
+          <strong>Eu te amo! ❤️</strong>
+        </p>
+  
+        <p style="margin-top: 20px; font-size: 16px; font-style: italic;">
+          "O amor é paciente, o amor é bondoso. Não inveja, não se vangloria, não se orgulha. Tudo sofre, tudo crê, tudo espera, tudo suporta." <br>
+          – <strong>1 Coríntios 13:4,7</strong>
+        </p>
+      </div>
+  
+      <div class="hearts" id="hearts"></div>
+  
+
+      <p style="margin-top: 20px; font-size: 16px; font-style: italic;">
+        "O amor é paciente, o amor é bondoso... – <strong>1 Coríntios 13:4,7</strong>"
+      </p>
     </div>
 
     <div class="hearts" id="hearts"></div>
-  </div>
+  </section>
 
   <script>
-    function showSecondScreen() {
-      document.getElementById("screen1").style.display = "none";
-      document.getElementById("screen2").style.display = "flex";
+    function irParaPrincipal() {
+      document.getElementById("boas-vindas").style.display = "none";
+      document.getElementById("principal").style.display = "flex";
 
       const audio = document.getElementById("player");
       const statusMusica = document.getElementById("statusMusica");
@@ -270,7 +285,6 @@
     }
 
     const inicio = new Date("2024-11-25T00:00:00");
-
     function atualizarTempo() {
       const agora = new Date();
       const diff = agora - inicio;
@@ -278,11 +292,8 @@
       const horas = agora.getHours();
       const minutos = agora.getMinutes();
       const segundos = agora.getSeconds();
-
-      document.getElementById("tempo").textContent =
-        `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+      document.getElementById("tempo").textContent = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
     }
-
     setInterval(atualizarTempo, 1000);
     atualizarTempo();
 
@@ -295,16 +306,14 @@
       document.getElementById("hearts").appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-
     setInterval(criarCoração, 500);
 
-    // Carrossel com transição
+    // Carrossel
     let fotoAtual = 0;
     const track = document.getElementById("carouselTrack");
     const fotos = track.querySelectorAll("img");
     const dotsContainer = document.getElementById("dots");
 
-    // Criar bolinhas
     fotos.forEach((_, i) => {
       const dot = document.createElement("span");
       if (i === 0) dot.classList.add("active");
@@ -315,17 +324,13 @@
 
     function mudarFoto(direcao = 1) {
       dots[fotoAtual].classList.remove("active");
-
       fotoAtual = (fotoAtual + direcao + fotos.length) % fotos.length;
       dots[fotoAtual].classList.add("active");
-
       track.style.transform = `translateX(-${fotoAtual * 250}px)`;
     }
 
-    // Troca automática que para após um ciclo
     let trocasAutomáticas = 0;
     const maxTrocas = fotos.length;
-
     const intervalo = setInterval(() => {
       mudarFoto(1);
       trocasAutomáticas++;
@@ -334,7 +339,5 @@
       }
     }, 4000);
   </script>
-
 </body>
 </html>
-
